@@ -7006,7 +7006,7 @@ const trackers = {
       "layer-ads.net",
       "leadbolt.com",
       "leadforensics.com",
-      "leadinfo.net",
+      //"leadinfo.net",
       "leanplum.com",
       "lemmatechnologies.com",
       "levexis.com",
