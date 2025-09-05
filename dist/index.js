@@ -3224,12 +3224,10 @@ const CookieConsenter = ({
   };
   const handleDeclineClick = (e) => {
     e.preventDefault();
-    onManage();
-    console.log("User clicked DeclineButton, but it's going to be handled by the manage button");
-    // setIsExiting(true);
-    // setTimeout(() => {
-    //   if (onDecline) onDecline();
-    // }, 500);
+    setIsExiting(true);
+    setTimeout(() => {
+      if (onDecline) onDecline();
+    }, 500);
   };
   const handleManageClick = (e) => {
     e.preventDefault();
@@ -3441,14 +3439,14 @@ const CookieConsenter = ({
                 children: tFunction("manageButtonText")
               }
             ),
-            // /* @__PURE__ */ jsx(
-            //   "button",
-            //   {
-            //     onClick: handleManageClick,
-            //     className: declineButtonClasses,
-            //     children: tFunction("manageButtonText")
-            //   }
-            // ),
+            /* @__PURE__ */ jsx(
+              "button",
+              {
+                onClick: handleDeclineClick,
+                className: declineButtonClasses,
+                children: tFunction("declineButtonText")
+              }
+            ),
             /* @__PURE__ */ jsx(
               "button",
               {
@@ -3473,8 +3471,8 @@ const CookieConsenter = ({
           /* @__PURE__ */ jsx(
             "button",
             {
-              onClick: handleManageClick,
-              className: manageButtonClasses,
+              onClick: handleDeclineClick,
+              className: declineButtonClasses,
               children: tFunction("declineButtonText")
             }
           ),
@@ -11721,19 +11719,14 @@ const CookieManager = ({
         tFunction,
         cookieKey,
         onAccept: acceptCookies,
-        onDecline: handleManage,
+        onDecline: declineCookies,
         onManage: handleManage,
         detailedConsent,
-        // initialPreferences: detailedConsent ? {
-        //   Analytics: detailedConsent.Analytics.consented,
-        //   Social: detailedConsent.Social.consented,
-        //   Advertising: detailedConsent.Advertising.consented
-        // } : void 0
-        initialPreferences: {
-          Analytics: true,
-          Social: false,
-          Advertising: true
-        } //void 0
+        initialPreferences: detailedConsent ? {
+          Analytics: detailedConsent.Analytics.consented,
+          Social: detailedConsent.Social.consented,
+          Advertising: detailedConsent.Advertising.consented
+        } : void 0
       }
     ),
     showManageConsent && createPortal(
@@ -11748,16 +11741,11 @@ const CookieManager = ({
               theme,
               onSave: updateDetailedConsent,
               onCancel: handleCancelManage,
-              // initialPreferences: detailedConsent ? {
-              //   Analytics: detailedConsent.Analytics.consented,
-              //   Social: detailedConsent.Social.consented,
-              //   Advertising: detailedConsent.Advertising.consented
-              // } : void 0,
-              initialPreferences: {
-                Analytics: true,
-                Social: true,
-                Advertising: true
-              },
+              initialPreferences: detailedConsent ? {
+                Analytics: detailedConsent.Analytics.consented,
+                Social: detailedConsent.Social.consented,
+                Advertising: detailedConsent.Advertising.consented
+              } : void 0,
               detailedConsent,
               classNames: props.classNames
             }

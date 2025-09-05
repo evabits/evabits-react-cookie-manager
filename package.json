@@ -1,15 +1,11 @@
 {
-  "name": "react-cookie-manager",
+  "name": "evabits-react-cookie-manager",
   "version": "3.7.2",
-  "description": "🍪 The ultimate React cookie consent solution. Automatically block trackers, manage consent preferences, and protect user privacy with an elegant UI. Perfect for modern web applications.",
+  "description": "EVAbits clone",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hypershiphq/react-cookie-manager.git"
+    "url": "https://github.com/evabits/evabits-react-cookie-manager"
   },
-  "bugs": {
-    "url": "https://github.com/hypershiphq/react-cookie-manager/issues"
-  },
-  "homepage": "https://github.com/hypershiphq/react-cookie-manager#readme",
   "keywords": [
     "react",
     "cookies",
@@ -79,7 +75,7 @@
     "terser": "^5.37.0",
     "tsup": "^8.3.5",
     "typescript": "^5.5.2",
-    "vite": "^6.0.3",
+    "vite": "^6.3.5",
     "vite-plugin-dts": "^4.3.0",
     "vite-plugin-lib-inject-css": "^2.2.1"
   },
