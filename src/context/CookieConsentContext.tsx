@@ -254,6 +254,9 @@ export const CookieManager: React.FC<CookieManagerProps> = ({
     // Show banner if no consent decision has been made AND manage consent is not shown
     if (detailedConsent === null && !showManageConsent) {
       setIsVisible(true);
+    } else if (showManageConsent) {
+      // Hide banner when manage consent is shown
+      setIsVisible(false);
     }
 
     // Handle tracking blocking
@@ -416,7 +419,6 @@ export const CookieManager: React.FC<CookieManagerProps> = ({
   };
 
   const handleManage = () => {
-    setIsVisible(false);
     setShowManageConsent(true);
     setIsFloatingButtonVisible(false);
   };

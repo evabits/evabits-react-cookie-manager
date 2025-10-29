@@ -160,7 +160,6 @@ const MobileModal: React.FC<
                 </a>
               )}
             </div>
-          )}
         </div>
       </div>
     </div>

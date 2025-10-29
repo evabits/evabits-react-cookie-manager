@@ -1,4 +1,4 @@
-import { jsxs, jsx } from "react/jsx-runtime";
+import { jsx, jsxs } from "react/jsx-runtime";
 import { useState, useEffect, createContext, useRef, useMemo, useContext } from "react";
 import { createPortal } from "react-dom";
 function r(e) {
@@ -2715,337 +2715,6 @@ const twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-const ManageConsent = ({
-  theme = "light",
-  tFunction,
-  onSave,
-  onCancel,
-  initialPreferences = {
-    Analytics: false,
-    Social: false,
-    Advertising: false
-  },
-  detailedConsent,
-  classNames
-}) => {
-  const [consent, setConsent] = useState(initialPreferences);
-  const handleToggle = (category) => {
-    setConsent((prev) => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
-  };
-  const handleSave = () => {
-    onSave(consent);
-  };
-  const formatDate = (timestamp) => {
-    try {
-      const date = new Date(timestamp);
-      return date.toLocaleString(void 0, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    } catch (e) {
-      return "Invalid date";
-    }
-  };
-  const renderConsentStatus = (category) => {
-    if (!detailedConsent || !detailedConsent[category]) return null;
-    const status = detailedConsent[category];
-    return /* @__PURE__ */ jsx(
-      "p",
-      {
-        className: (classNames == null ? void 0 : classNames.manageCookieStatusText) ? cn(classNames.manageCookieStatusText) : cn(
-          "text-xs mt-1 text-left",
-          theme === "light" ? "text-gray-500" : "text-gray-500"
-        ),
-        children: tFunction("manageCookiesStatus", {
-          status: status.consented ? tFunction("manageCookiesStatusConsented") : tFunction("manageCookiesStatusDeclined"),
-          date: formatDate(status.timestamp)
-        })
-      }
-    );
-  };
-  return /* @__PURE__ */ jsxs(
-    "div",
-    {
-      className: (classNames == null ? void 0 : classNames.manageCookieContainer) ? cn(classNames.manageCookieContainer) : "flex flex-col gap-6",
-      children: [
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(
-            "h3",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieTitle) ? cn(classNames.manageCookieTitle) : cn(
-                "text-sm font-semibold mb-2",
-                theme === "light" ? "text-gray-900" : "text-white"
-              ),
-              children: tFunction("manageTitle")
-            }
-          ),
-          /* @__PURE__ */ jsx(
-            "p",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieMessage) ? cn(classNames.manageCookieMessage) : cn(
-                "text-xs",
-                theme === "light" ? "text-gray-700" : "text-gray-200"
-              ),
-              children: tFunction("manageMessage")
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-4", children: [
-          /* @__PURE__ */ jsxs(
-            "div",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
-              children: [
-                /* @__PURE__ */ jsxs("div", { children: [
-                  /* @__PURE__ */ jsx(
-                    "h4",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
-                        "text-xs font-medium text-left",
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      ),
-                      children: tFunction("manageEssentialTitle")
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "p",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
-                        "text-xs text-left",
-                        theme === "light" ? "text-gray-600" : "text-gray-400"
-                      ),
-                      children: tFunction("manageEssentialSubtitle")
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "p",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieStatusText) ? cn(classNames.manageCookieStatusText) : cn(
-                        "text-xs mt-1 text-left",
-                        theme === "light" ? "text-gray-500" : "text-gray-500"
-                      ),
-                      children: tFunction("manageEssentialStatus")
-                    }
-                  )
-                ] }),
-                /* @__PURE__ */ jsx(
-                  "div",
-                  {
-                    className: `px-3 py-1 text-xs text-center font-medium rounded-full ${theme === "light" ? "bg-gray-200 text-gray-600" : "bg-gray-800 text-gray-300"}`,
-                    children: tFunction("manageEssentialStatusButtonText")
-                  }
-                )
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            "div",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
-              children: [
-                /* @__PURE__ */ jsxs("div", { children: [
-                  /* @__PURE__ */ jsx(
-                    "h4",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
-                        "text-xs font-medium text-left",
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      ),
-                      children: tFunction("manageAnalyticsTitle")
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "p",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
-                        "text-xs text-left",
-                        theme === "light" ? "text-gray-600" : "text-gray-400"
-                      ),
-                      children: tFunction("manageAnalyticsSubtitle")
-                    }
-                  ),
-                  renderConsentStatus("Analytics")
-                ] }),
-                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
-                  /* @__PURE__ */ jsx(
-                    "input",
-                    {
-                      type: "checkbox",
-                      checked: consent.Analytics,
-                      onChange: () => handleToggle("Analytics"),
-                      className: "sr-only peer"
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
-                        classNames.manageCookieToggle,
-                        consent.Analytics && classNames.manageCookieToggleChecked
-                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
-                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
-                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
-                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
-                after:transition-all`)
-                    }
-                  )
-                ] })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            "div",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
-              children: [
-                /* @__PURE__ */ jsxs("div", { children: [
-                  /* @__PURE__ */ jsx(
-                    "h4",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
-                        "text-xs font-medium text-left",
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      ),
-                      children: tFunction("manageSocialTitle")
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "p",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
-                        "text-xs text-left",
-                        theme === "light" ? "text-gray-600" : "text-gray-400"
-                      ),
-                      children: tFunction("manageSocialSubtitle")
-                    }
-                  ),
-                  renderConsentStatus("Social")
-                ] }),
-                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
-                  /* @__PURE__ */ jsx(
-                    "input",
-                    {
-                      type: "checkbox",
-                      checked: consent.Social,
-                      onChange: () => handleToggle("Social"),
-                      className: "sr-only peer"
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
-                        classNames.manageCookieToggle,
-                        consent.Social && classNames.manageCookieToggleChecked
-                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
-                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
-                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
-                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
-                after:transition-all`)
-                    }
-                  )
-                ] })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            "div",
-            {
-              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
-              children: [
-                /* @__PURE__ */ jsxs("div", { children: [
-                  /* @__PURE__ */ jsx(
-                    "h4",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
-                        "text-xs font-medium text-left",
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      ),
-                      children: tFunction("manageAdvertTitle")
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "p",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
-                        "text-xs text-left",
-                        theme === "light" ? "text-gray-600" : "text-gray-400"
-                      ),
-                      children: tFunction("manageAdvertSubtitle")
-                    }
-                  ),
-                  renderConsentStatus("Advertising")
-                ] }),
-                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
-                  /* @__PURE__ */ jsx(
-                    "input",
-                    {
-                      type: "checkbox",
-                      checked: consent.Advertising,
-                      onChange: () => handleToggle("Advertising"),
-                      className: "sr-only peer"
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
-                        classNames.manageCookieToggle,
-                        consent.Advertising && classNames.manageCookieToggleChecked
-                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
-                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
-                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
-                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
-                after:transition-all`)
-                    }
-                  )
-                ] })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row gap-3 mt-2 sm:justify-end", children: [
-          onCancel && /* @__PURE__ */ jsx(
-            "button",
-            {
-              onClick: onCancel,
-              className: (classNames == null ? void 0 : classNames.manageCancelButton) ? cn(classNames.manageCancelButton) : cn(
-                `w-full sm:w-auto px-3 py-2 sm:py-1.5 text-xs font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 ${theme === "light" ? "bg-gray-200 hover:bg-gray-300 text-gray-800" : "bg-gray-800 hover:bg-gray-700 text-gray-300"}`
-              ),
-              children: tFunction("manageCancelButtonText")
-            }
-          ),
-          /* @__PURE__ */ jsx(
-            "button",
-            {
-              onClick: handleSave,
-              className: (classNames == null ? void 0 : classNames.manageSaveButton) ? cn(classNames.manageSaveButton) : "w-full sm:w-auto px-3 py-2 sm:py-1.5 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105",
-              children: tFunction("manageSaveButtonText")
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsx("div", { className: "text-center mt-4", children: /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://cookiekit.io",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: (classNames == null ? void 0 : classNames.poweredByLink) ? cn(classNames.poweredByLink) : cn(
-              `text-xs transition-opacity duration-200 ${theme === "light" ? "text-gray-500 hover:text-gray-700" : "text-gray-400 hover:text-gray-200"}`
-            ),
-            children: "Powered by CookieKit"
-          }
-        ) })
-      ]
-    }
-  );
-};
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -3068,9 +2737,6 @@ const MobileModal = ({
   handleManage,
   isExiting,
   isEntering,
-  isManaging,
-  handleSavePreferences,
-  handleCancelManage,
   displayType = "banner",
   initialPreferences,
   detailedConsent,
@@ -3095,18 +2761,7 @@ const MobileModal = ({
               theme === "light" ? "bg-white/95 ring-1 ring-black/10" : "bg-black/95 ring-1 ring-white/10",
               "rounded-2xl backdrop-blur-sm backdrop-saturate-150"
             ),
-            children: isManaging ? /* @__PURE__ */ jsx(
-              ManageConsent,
-              {
-                theme,
-                tFunction,
-                onSave: handleSavePreferences,
-                onCancel: handleCancelManage,
-                initialPreferences,
-                detailedConsent,
-                classNames
-              }
-            ) : /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-3", children: [
+            children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-3", children: [
               title && /* @__PURE__ */ jsx(
                 "h3",
                 {
@@ -3195,7 +2850,6 @@ const CookieConsenter = ({
     Advertising: false
   },
   detailedConsent,
-  isManaging = false,
   classNames
 }) => {
   const [isExiting, setIsExiting] = useState(false);
@@ -3233,24 +2887,7 @@ const CookieConsenter = ({
     e.preventDefault();
     if (onManage) onManage();
   };
-  const handleSavePreferences = (categories) => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (onManage) {
-        onManage(categories);
-      }
-    }, 500);
-  };
-  const handleCancelManage = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (onManage) onManage();
-    }, 500);
-  };
   if (!shouldRender) return null;
-  if (isManaging) {
-    return null;
-  }
   if (isMobile) {
     return createPortal(
       /* @__PURE__ */ jsx(
@@ -3266,9 +2903,6 @@ const CookieConsenter = ({
             handleManage: handleManageClick,
             isExiting,
             isEntering,
-            isManaging: false,
-            handleSavePreferences,
-            handleCancelManage,
             displayType,
             initialPreferences,
             detailedConsent,
@@ -3694,6 +3328,337 @@ const FloatingCookieButton = ({
             ]
           }
         )
+      ]
+    }
+  );
+};
+const ManageConsent = ({
+  theme = "light",
+  tFunction,
+  onSave,
+  onCancel,
+  initialPreferences = {
+    Analytics: false,
+    Social: false,
+    Advertising: false
+  },
+  detailedConsent,
+  classNames
+}) => {
+  const [consent, setConsent] = useState(initialPreferences);
+  const handleToggle = (category) => {
+    setConsent((prev) => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+  const handleSave = () => {
+    onSave(consent);
+  };
+  const formatDate = (timestamp) => {
+    try {
+      const date = new Date(timestamp);
+      return date.toLocaleString(void 0, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    } catch (e) {
+      return "Invalid date";
+    }
+  };
+  const renderConsentStatus = (category) => {
+    if (!detailedConsent || !detailedConsent[category]) return null;
+    const status = detailedConsent[category];
+    return /* @__PURE__ */ jsx(
+      "p",
+      {
+        className: (classNames == null ? void 0 : classNames.manageCookieStatusText) ? cn(classNames.manageCookieStatusText) : cn(
+          "text-xs mt-1 text-left",
+          theme === "light" ? "text-gray-500" : "text-gray-500"
+        ),
+        children: tFunction("manageCookiesStatus", {
+          status: status.consented ? tFunction("manageCookiesStatusConsented") : tFunction("manageCookiesStatusDeclined"),
+          date: formatDate(status.timestamp)
+        })
+      }
+    );
+  };
+  return /* @__PURE__ */ jsxs(
+    "div",
+    {
+      className: (classNames == null ? void 0 : classNames.manageCookieContainer) ? cn(classNames.manageCookieContainer) : "flex flex-col gap-6",
+      children: [
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx(
+            "h3",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieTitle) ? cn(classNames.manageCookieTitle) : cn(
+                "text-sm font-semibold mb-2",
+                theme === "light" ? "text-gray-900" : "text-white"
+              ),
+              children: tFunction("manageTitle")
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "p",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieMessage) ? cn(classNames.manageCookieMessage) : cn(
+                "text-xs",
+                theme === "light" ? "text-gray-700" : "text-gray-200"
+              ),
+              children: tFunction("manageMessage")
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-4", children: [
+          /* @__PURE__ */ jsxs(
+            "div",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
+              children: [
+                /* @__PURE__ */ jsxs("div", { children: [
+                  /* @__PURE__ */ jsx(
+                    "h4",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
+                        "text-xs font-medium text-left",
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      ),
+                      children: tFunction("manageEssentialTitle")
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "p",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
+                        "text-xs text-left",
+                        theme === "light" ? "text-gray-600" : "text-gray-400"
+                      ),
+                      children: tFunction("manageEssentialSubtitle")
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "p",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieStatusText) ? cn(classNames.manageCookieStatusText) : cn(
+                        "text-xs mt-1 text-left",
+                        theme === "light" ? "text-gray-500" : "text-gray-500"
+                      ),
+                      children: tFunction("manageEssentialStatus")
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsx(
+                  "div",
+                  {
+                    className: `px-3 py-1 text-xs text-center font-medium rounded-full ${theme === "light" ? "bg-gray-200 text-gray-600" : "bg-gray-800 text-gray-300"}`,
+                    children: tFunction("manageEssentialStatusButtonText")
+                  }
+                )
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxs(
+            "div",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
+              children: [
+                /* @__PURE__ */ jsxs("div", { children: [
+                  /* @__PURE__ */ jsx(
+                    "h4",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
+                        "text-xs font-medium text-left",
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      ),
+                      children: tFunction("manageAnalyticsTitle")
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "p",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
+                        "text-xs text-left",
+                        theme === "light" ? "text-gray-600" : "text-gray-400"
+                      ),
+                      children: tFunction("manageAnalyticsSubtitle")
+                    }
+                  ),
+                  renderConsentStatus("Analytics")
+                ] }),
+                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
+                  /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "checkbox",
+                      checked: consent.Analytics,
+                      onChange: () => handleToggle("Analytics"),
+                      className: "sr-only peer"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "div",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
+                        classNames.manageCookieToggle,
+                        consent.Analytics && classNames.manageCookieToggleChecked
+                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
+                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
+                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
+                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
+                after:transition-all`)
+                    }
+                  )
+                ] })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxs(
+            "div",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
+              children: [
+                /* @__PURE__ */ jsxs("div", { children: [
+                  /* @__PURE__ */ jsx(
+                    "h4",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
+                        "text-xs font-medium text-left",
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      ),
+                      children: tFunction("manageSocialTitle")
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "p",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
+                        "text-xs text-left",
+                        theme === "light" ? "text-gray-600" : "text-gray-400"
+                      ),
+                      children: tFunction("manageSocialSubtitle")
+                    }
+                  ),
+                  renderConsentStatus("Social")
+                ] }),
+                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
+                  /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "checkbox",
+                      checked: consent.Social,
+                      onChange: () => handleToggle("Social"),
+                      className: "sr-only peer"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "div",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
+                        classNames.manageCookieToggle,
+                        consent.Social && classNames.manageCookieToggleChecked
+                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
+                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
+                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
+                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
+                after:transition-all`)
+                    }
+                  )
+                ] })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxs(
+            "div",
+            {
+              className: (classNames == null ? void 0 : classNames.manageCookieCategory) ? cn(classNames.manageCookieCategory) : "flex items-start justify-between",
+              children: [
+                /* @__PURE__ */ jsxs("div", { children: [
+                  /* @__PURE__ */ jsx(
+                    "h4",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategoryTitle) ? cn(classNames.manageCookieCategoryTitle) : cn(
+                        "text-xs font-medium text-left",
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      ),
+                      children: tFunction("manageAdvertTitle")
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "p",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieCategorySubtitle) ? cn(classNames.manageCookieCategorySubtitle) : cn(
+                        "text-xs text-left",
+                        theme === "light" ? "text-gray-600" : "text-gray-400"
+                      ),
+                      children: tFunction("manageAdvertSubtitle")
+                    }
+                  ),
+                  renderConsentStatus("Advertising")
+                ] }),
+                /* @__PURE__ */ jsxs("label", { className: "relative inline-flex items-center cursor-pointer", children: [
+                  /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "checkbox",
+                      checked: consent.Advertising,
+                      onChange: () => handleToggle("Advertising"),
+                      className: "sr-only peer"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    "div",
+                    {
+                      className: (classNames == null ? void 0 : classNames.manageCookieToggle) ? cn(
+                        classNames.manageCookieToggle,
+                        consent.Advertising && classNames.manageCookieToggleChecked
+                      ) : cn(`w-11 h-6 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 
+                ${theme === "light" ? "bg-gray-200 peer-checked:bg-blue-500" : "bg-gray-700 peer-checked:bg-blue-500"} 
+                peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
+                after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 
+                after:transition-all`)
+                    }
+                  )
+                ] })
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row gap-3 mt-2 sm:justify-end", children: [
+          onCancel && /* @__PURE__ */ jsx(
+            "button",
+            {
+              onClick: onCancel,
+              className: (classNames == null ? void 0 : classNames.manageCancelButton) ? cn(classNames.manageCancelButton) : cn(
+                `w-full sm:w-auto px-3 py-2 sm:py-1.5 text-xs font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 ${theme === "light" ? "bg-gray-200 hover:bg-gray-300 text-gray-800" : "bg-gray-800 hover:bg-gray-700 text-gray-300"}`
+              ),
+              children: tFunction("manageCancelButtonText")
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              onClick: handleSave,
+              className: (classNames == null ? void 0 : classNames.manageSaveButton) ? cn(classNames.manageSaveButton) : "w-full sm:w-auto px-3 py-2 sm:py-1.5 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105",
+              children: tFunction("manageSaveButtonText")
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "text-center mt-4", children: /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://cookiekit.io",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: (classNames == null ? void 0 : classNames.poweredByLink) ? cn(classNames.poweredByLink) : cn(
+              `text-xs transition-opacity duration-200 ${theme === "light" ? "text-gray-500 hover:text-gray-700" : "text-gray-400 hover:text-gray-200"}`
+            ),
+            children: "Powered by CookieKit"
+          }
+        ) })
       ]
     }
   );
@@ -11534,6 +11499,8 @@ const CookieManager = ({
   useEffect(() => {
     if (detailedConsent === null && !showManageConsent) {
       setIsVisible(true);
+    } else if (showManageConsent) {
+      setIsVisible(false);
     }
     if (!disableAutomaticBlocking) {
       const currentPreferences = detailedConsent ? {
@@ -11665,7 +11632,6 @@ const CookieManager = ({
     }
   };
   const handleManage = () => {
-    setIsVisible(false);
     setShowManageConsent(true);
     setIsFloatingButtonVisible(false);
   };
