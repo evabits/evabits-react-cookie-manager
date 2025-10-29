@@ -33,9 +33,6 @@ const MobileModal: React.FC<
     handleManage: (e: React.MouseEvent<HTMLButtonElement>) => void;
     isExiting: boolean;
     isEntering: boolean;
-    isManaging: boolean;
-    handleSavePreferences: (categories: CookieCategories) => void;
-    handleCancelManage: () => void;
     initialPreferences?: CookieCategories;
     detailedConsent?: DetailedCookieConsent | null;
     classNames?: CookieConsenterProps["classNames"];
@@ -50,9 +47,6 @@ const MobileModal: React.FC<
   handleManage,
   isExiting,
   isEntering,
-  isManaging,
-  handleSavePreferences,
-  handleCancelManage,
   displayType = "banner",
   initialPreferences,
   detailedConsent,
@@ -84,18 +78,7 @@ const MobileModal: React.FC<
             "rounded-2xl backdrop-blur-sm backdrop-saturate-150"
           )}
         >
-          {isManaging ? (
-            <ManageConsent
-              theme={theme}
-              tFunction={tFunction}
-              onSave={handleSavePreferences}
-              onCancel={handleCancelManage}
-              initialPreferences={initialPreferences}
-              detailedConsent={detailedConsent}
-              classNames={classNames}
-            />
-          ) : (
-            <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3">
               {title && (
                 <h3
                   className={cn(
@@ -201,7 +184,6 @@ const CookieConsenter: React.FC<
     Advertising: false,
   },
   detailedConsent,
-  isManaging = false,
   classNames,
 }) => {
   const [isExiting, setIsExiting] = useState(false);
@@ -245,28 +227,7 @@ const CookieConsenter: React.FC<
     if (onManage) onManage();
   };
 
-  const handleSavePreferences = (categories: CookieCategories) => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (onManage) {
-        onManage(categories);
-      }
-    }, 500);
-  };
-
-  const handleCancelManage = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (onManage) onManage();
-    }, 500);
-  };
-
   if (!shouldRender) return null;
-
-  // If isManaging is true, don't render the consenter
-  if (isManaging) {
-    return null;
-  }
 
   // On mobile, always render the MobileModal regardless of displayType
   if (isMobile) {
@@ -282,9 +243,6 @@ const CookieConsenter: React.FC<
           handleManage: handleManageClick,
           isExiting,
           isEntering,
-          isManaging: false,
-          handleSavePreferences,
-          handleCancelManage,
           displayType,
           initialPreferences,
           detailedConsent,
